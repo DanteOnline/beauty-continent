@@ -1,0 +1,7 @@
+<a class="view {% if request.session.view == 'grid' %} view-active {% endif %}" data-v="grid" href="javascript:">Таблицей</a>
+<a class="view {% if request.session.view == 'list' %} view-active {% endif %}" data-v="list" href="javascript:">Списком</a>
+{% if request.session.view == 'list' %}
+    {% include "item_list.html" %}
+{% else %}
+    {% include "item_grid.html" %}
+{% endif %}

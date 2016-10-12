@@ -1,0 +1,13 @@
+{% load comments %}
+<div class="row">
+    {% render_comment_list for object %}
+    {% get_comment_form for object as form %}
+    <div class="form">
+        <form action="{% comment_form_target %}" method="post" id="comment_form">
+            {% include "generic/form.html" %}
+            <input type="hidden" name="next" value="{{object.get_url}}">
+            <div id="result" style="margin-bottom: 20px"></div>
+            <button type="submit" class="btn btn-success">Оставить отзыв</button>
+        </form>
+    </div>
+</div>

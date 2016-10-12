@@ -1,0 +1,22 @@
+<h2>Отзывы</h2>
+{% if comment_list|length > 0 %}
+<div class="well">
+        <hr>
+        {% for object in comment_list %}
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    {{ object.user_name }}
+                    <span class="pull-right">{{ object.submit_date|date:"j.m.Y H:i:s" }}</span>
+                    <p>{{ object.comment }}</p>
+                </div>
+            </div>
+
+            <hr>
+        {% endfor %}
+    </div>
+{% endif %}

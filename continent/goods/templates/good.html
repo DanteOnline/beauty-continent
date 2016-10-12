@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% load comments %}
+{% block title %}
+    {{object.name}}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="thumbnail">
+        <img class="img-responsive" src="{{object.image.url}}" alt="{{object.name}}">
+        <div class="caption-full">
+            <h4 class="pull-right">{{object.get_price}}</h4>
+            <h4><a href="#">{{object.name}}</a>
+            </h4>
+            {{object.content}}
+        </div>
+        <div class="ratings">
+            <p class="pull-right">{{object.comments_count}} отзывов</p>
+            <p>
+                {% include "generic/rating.html" %} звезды
+            </p>
+        </div>
+    </div>
+
+    {% render_comment_list for object %}
+
+    {% get_comment_form for object as form %}
+    <div class="form">
+        <form action="{% comment_form_target %}" method="post" id="comment_form">
+            {% include "generic/form.html" %}
+            <input type="hidden" name="next" value="{% url "goods_detail" pk=object.pk %}">
+            <div id="result" style="margin-bottom: 20px"></div>
+            <button type="submit" class="btn btn-success">Оставить отзыв</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block add_js %}
+<script src="{% static "js/jquery.form.js" %}"></script>
+<script src="{% static "js/jquery.validate.js" %}"></script>
+<script src="{% static "js/validate_comments.js" %}"></script>
+{% endblock %}

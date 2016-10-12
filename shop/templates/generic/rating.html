@@ -1,0 +1,8 @@
+{% load myfilters %}
+{% for i in 5|times %}
+    {% if forloop.counter <= object.rating %}
+        <span class="glyphicon glyphicon-star"></span>
+    {% else %}
+        <span class="glyphicon glyphicon-star-empty"></span>
+    {% endif %}
+{% endfor %}

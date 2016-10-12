@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% load myfilters %}
+{% block title %}
+    {{category.name}}
+{% endblock %}
+{% block content %}
+<a class="view {% if request.session.view == 'grid3' %} view-active {% endif %}" data-v="grid3" href="javascript:">По 3 товара</a>
+<a class="view {% if request.session.view == 'grid2' %} view-active {% endif %}" data-v="grid2" href="javascript:">По 2 товара</a>
+<a class="view {% if request.session.view == 'grid4' %} view-active {% endif %}" data-v="grid4" href="javascript:">По 4 товара</a>
+<a class="view {% if request.session.view == 'list' %} view-active {% endif %}" data-v="list" href="javascript:">Списком</a>
+{% if request.session.view == 'list' %}
+    {% include "generic/good_list.html" %}
+{% else %}
+    {% include "generic/good_grid.html" %}
+{% endif %}
+    {% include "generic/pagination.html" %}
+{% endblock %}

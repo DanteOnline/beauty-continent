@@ -1,0 +1,34 @@
+{% for item in object.get_children %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="{{item.image.url}}" alt="{{item.name}}">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h4 class="pull-right">{{item.get_price}}</h4>
+                <h4><a href="{{item.get_url}}">{{item.name}}</a>
+                </h4>
+                <p>{{item.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <div class="ratings">
+                <p class="pull-right">
+                    <!--{% if not object.in_stock %}
+                        НЕТ В НАЛИЧИИ
+                    {% endif %}-->
+                    {{item.comments_count}} отзывов
+                </p>
+                <p>
+                    {% include "generic/rating.html" %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
